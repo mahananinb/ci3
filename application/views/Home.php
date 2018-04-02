@@ -37,8 +37,8 @@
 							<!-- Collect the nav links, forms, and other content for toggling -->
 							<div class="collapse navbar-collapse navbar-ex1-collapse">
 								<ul class="nav navbar-nav pull-right">
-									<li class="active"> <a href="open">Home</a></li>
-									<li> <a href="about">About</a></li>
+									<li class="active"> <a href="http://localhost/ci3/open/lists">Home</a></li>
+									<li> <a href="http://localhost/ci3/open/About">About</a></li>
 							</div><!-- /.navbar-collapse -->
 						</div>
 					</nav>
@@ -53,6 +53,25 @@
 					</div>
 
 			</div>
+			<?php
+			function limit_words($string, $word_limit){
+                $words = explode(" ",$string);
+                return implode(" ",array_splice($words,0,$word_limit));
+            }
+			foreach ($data->result_array() as $i) :
+				$id=$i['berita_id'];
+				$judul=$i['berita_judul'];
+				$image=$i['berita_image'];
+				$isi=$i['berita_isi'];
+		?>
+		<div class="col-md-8 col-md-offset-2">
+			<h2><?php echo $judul;?></h2><hr/>
+			<img src="<?php echo base_url().'assets/images/'.$image;?>">
+			<?php echo limit_words($isi,30);?><a href="<?php echo base_url().'open/view/'.$id;?>"> Selengkapnya ></a>
+		<!-- <?php echo limit_words($isi,30);?><a href="<?php echo base_url().'ci3/open/view/'.$id;?>"> Selengkapnya ></a> -->
+		</div>
+		<?php endforeach;?>
+	</div>
 		</div>
 		<!-- jQuery -->
 		<script src="//code.jquery.com/jquery.js"></script>

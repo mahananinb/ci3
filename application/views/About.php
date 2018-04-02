@@ -35,8 +35,8 @@
 						<!-- Collect the nav links, forms, and other content for toggling -->
 						<div class="collapse navbar-collapse navbar-ex1-collapse">
 							<ul class="nav navbar-nav pull-right">
-								<li> <a href="open">Home</a></li>
-								<li> <a href="about">About</a></li>
+								<li> <a href="http://localhost/ci3/open/index">Home</a></li>
+									<li class="active"> <a href="http://localhost/ci3/open/About">About</a></li>
 							</ul>
 						</div><!-- /.navbar-collapse -->
 					</div>
@@ -48,13 +48,8 @@
 				<center><img src="<?php echo base_url(); ?>assets/saya.jpg" class = "img-circle" width="200px" high = "200" > </center>
 			</div>
 			<br>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-							consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-							cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-							proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-				</br>
+						Hai everyone namaku Mahanani Nur Budiarti, kelas MI - 2E, NIM : 1631710087, prodi D-3 Manajemen Informatika, Jurusan Teknologi Informasi, Politeknik Negeri Malang
+			</br>
 		</div>
 		</div>
 		<!-- jQuery -->

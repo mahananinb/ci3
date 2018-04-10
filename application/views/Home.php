@@ -39,13 +39,14 @@
 								<ul class="nav navbar-nav pull-right">
 									<li class="active"> <a href="http://localhost/ci3/open/lists">Home</a></li>
 									<li> <a href="http://localhost/ci3/open/About">About</a></li>
+									<li> <a href="http://localhost/ci3/open/news">Form</a></li>
 							</div><!-- /.navbar-collapse -->
 						</div>
 					</nav>
 					<div class="jumbotron">
 						<div class="container">
 							<center>
-							<h1>Belajar dan Berlatih CodeIgniter</h1>
+							<h1>My Blog</h1>
 							Web ini menggunakan Bootstrap + Framework Codeigniter 
 							</center>
 						</div>
@@ -64,11 +65,11 @@
 				$image=$i['berita_image'];
 				$isi=$i['berita_isi'];
 		?>
+		
 		<div class="col-md-8 col-md-offset-2">
 			<h2><?php echo $judul;?></h2><hr/>
 			<img src="<?php echo base_url().'assets/images/'.$image;?>">
 			<?php echo limit_words($isi,30);?><a href="<?php echo base_url().'open/view/'.$id;?>"> Selengkapnya ></a>
-		<!-- <?php echo limit_words($isi,30);?><a href="<?php echo base_url().'ci3/open/view/'.$id;?>"> Selengkapnya ></a> -->
 		</div>
 		<?php endforeach;?>
 	</div>

@@ -37,6 +37,7 @@
 							<ul class="nav navbar-nav pull-right">
 								<li> <a href="http://localhost/ci3/open/index">Home</a></li>
 									<li class="active"> <a href="http://localhost/ci3/open/About">About</a></li>
+									<li> <a href="http://localhost/ci3/open/news">Post</a></li>
 							</ul>
 						</div><!-- /.navbar-collapse -->
 					</div>

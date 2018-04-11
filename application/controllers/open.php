@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class open extends CI_Controller {
 	
-	function __construct(){
+	function __construct(){ 
 		parent::__construct();
 		$this->load->model('m_berita');
 		$this->load->library('upload');
@@ -67,4 +67,21 @@ class open extends CI_Controller {
 		$this->load->view('V_news',$x);
 	}
 
-} 
+	public function delete_news(){
+            $kode = $this->uri->segment(3);
+            $this->m_berita->delete_news($kode);
+            redirect('open/index','refresh');
+        }
+
+    public function edit_news($kode){
+		$this->load->model('m_berita');
+		$data['single'] = $this->m_berita->get_berita_by_kode($kode);
+		if($this->input->post('edit_news')){
+			$upload=$this->m_berita->upload();
+			$this->m_berita->update($upload,$kode);
+			redirect('open');
+		}
+		
+		$this->load->view('V_edit',$data);
+	}
+}

@@ -39,7 +39,7 @@
 								<ul class="nav navbar-nav pull-right">
 									<li class="active"> <a href="http://localhost/ci3/open/lists">Home</a></li>
 									<li> <a href="http://localhost/ci3/open/About">About</a></li>
-									<li> <a href="http://localhost/ci3/open/news">Form</a></li>
+									<li> <a href="http://localhost/ci3/open/news">Post</a></li>
 							</div><!-- /.navbar-collapse -->
 						</div>
 					</nav>
@@ -70,6 +70,8 @@
 			<h2><?php echo $judul;?></h2><hr/>
 			<img src="<?php echo base_url().'assets/images/'.$image;?>">
 			<?php echo limit_words($isi,30);?><a href="<?php echo base_url().'open/view/'.$id;?>"> Selengkapnya ></a>
+			<a href="<?php echo site_url('open/delete_news/'.$i['berita_id']) ?>" class="btn btn-danger">Delete</a>
+            <a href="<?php echo site_url('open/edit_news/'.$i['berita_id'])?>" class="btn btn-primary" class="btn btn-success">Edit</a> &nbsp;
 		</div>
 		<?php endforeach;?>
 	</div>

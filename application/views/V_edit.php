@@ -34,12 +34,23 @@
 	<!-- halaman tambah -->
 		<div class="col-md-8 col-md-offset-2">
 			<h2>Portal Berita</h2><hr/>
-			<form action="<?php echo base_url().'open/edit_news'?>" method="post" enctype="multipart/form-data">
-	            <input type="text" name="judul" class="form-control" placeholder="Judul berita" required/><br/>
-	            <textarea id="ckeditor" name="berita" class="form-control" required></textarea><br/>
+			<div class="container">
+
+			 <?php foreach ($single->result_array() as $u) :
+			 $id=$u['berita_id'];
+       		$judul=$u['berita_judul'];
+       		$isi=$u['berita_isi'];
+     		 ?>
+
+     			 <form action="<?php echo base_url().'open/edit_news'?>" method="post" enctype="multipart/form-data">
+	            <input type="text" name="judul" class="form-control" placeholder="Judul berita" value="<?php echo $u['berita_judul']; ?>"><br/>
+	            <textarea id="ckeditor" name="berita" class="form-control" value="<?php echo $u['berita_isi']; ?>"></textarea><br/>
 	            <input type="file" name="filefoto" required><br>
-	            <button class="btn btn-primary btn-lg" type="submit">Post Berita</button> 
+
+	            <button class="btn btn-primary btn-lg" type="submit">Post Berita</button>
             </form>
+
+            <?php endforeach?>
 		</div>
 		
 	</div>
@@ -48,7 +59,7 @@
 	<script type="text/javascript" src="<?php echo base_url().'assets/js/bootstrap.js'?>"></script>
 	<script src="<?php echo base_url().'assets/ckeditor/ckeditor.js'?>"></script>
 	<script type="text/javascript">
-	  $(function () {
+	 $(function () {
 	    CKEDITOR.replace('ckeditor');
 	  });
 	</script>

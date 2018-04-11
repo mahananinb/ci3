@@ -71,7 +71,7 @@
 			<img src="<?php echo base_url().'assets/images/'.$image;?>">
 			<?php echo limit_words($isi,30);?><a href="<?php echo base_url().'open/view/'.$id;?>"> Selengkapnya ></a>
 			<a href="<?php echo site_url('open/delete_news/'.$i['berita_id']) ?>" class="btn btn-danger">Delete</a>
-            <a href="<?php echo site_url('open/edit_news/'.$i['berita_id'])?>" class="btn btn-primary" class="btn btn-success">Edit</a> &nbsp;
+            <a href="<?php echo site_url('open/edit/'.$i['berita_id'])?>" class="btn btn-primary" class="btn btn-success">Edit</a> &nbsp;
 		</div>
 		<?php endforeach;?>
 	</div>

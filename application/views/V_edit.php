@@ -32,25 +32,39 @@
 					</nav>
 
 	<!-- halaman tambah -->
-		<div class="col-md-8 col-md-offset-2">
+		<div class="col-md-8">
 			<h2>Portal Berita</h2><hr/>
 			<div class="container">
 
-			 <?php foreach ($single->result_array() as $u) :
-			 $id=$u['berita_id'];
-       		$judul=$u['berita_judul'];
-       		$isi=$u['berita_isi'];
-     		 ?>
+     			 <form method="post" class="form-horizontal" enctype="multipart/form-data">
+			<div class="form-group">
+				<label class="control-label col-sm-2">
+					Judul
+				</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" name="berita_judul" value="<?=isset($default['berita_judul'])? $default['berita_judul'] : ""?>" required>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2">
+					Content					
+				</label>
+				<div class="col-sm-10">
+					<textarea name="berita_isi" class="form-control" required><?=isset($default['berita_isi'])? $default['berita_isi'] : ""?></textarea>
+				</div>
+			</div>
+			<div class="form-group">
+		      <label class="control-label col-sm-2">Gambar :</label>
+		     
+		      <div class="col-sm-10">
+		        <span class="input-group-addon"><input type="file" required name="berita_image" class="file"></span>
+		      </div><br>
+		    </div>
+			<center>
+			<input class="btn btn-primary" type="submit" name="simpan" value="simpan">
+			</center>
+		</form>
 
-     			 <form action="<?php echo base_url().'open/edit_news'?>" method="post" enctype="multipart/form-data">
-	            <input type="text" name="judul" class="form-control" placeholder="Judul berita" value="<?php echo $u['berita_judul']; ?>"><br/>
-	            <textarea id="ckeditor" name="berita" class="form-control" value="<?php echo $u['berita_isi']; ?>"></textarea><br/>
-	            <input type="file" name="filefoto" required><br>
-
-	            <button class="btn btn-primary btn-lg" type="submit">Post Berita</button>
-            </form>
-
-            <?php endforeach?>
 		</div>
 		
 	</div>

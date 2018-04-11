@@ -16,21 +16,25 @@ class M_berita extends CI_Model{
 		return $hsl;
 	}
 
-	public function update($upload, $kode){
-		if ($upload['result']=='success') {
-			$data = array(
-				'berita_judul' => $this->input->post('berita_judul'),
-				'berita_isi' => $this->input->post('berita_isi'),
-				'berita_image' => $upload['file']['file_name']
-			);
-		} else {
-			$data = array(
-				'berita_judul' => $this->input->post('berita_judul'),
-				'berita_isi' => $this->input->post('berita_isi'),
-			);
-		}
-		$this->db->where('berita_id', $kode);
-		$this->db->update('open', $data);
+	function get_single($id){
+		$data = array();
+  		$options = array('berita_id' => $id);
+  		$Q = $this->db->get_where('tbl_berita',$options,1);
+    		if ($Q->num_rows() > 0){
+      			$data = $Q->row_array();
+   			}
+  		$Q->free_result();
+ 		return $data;
+	}
+
+	public function update($post, $id){
+		//parameter $id wajib digunakan agar program tahu ID mana yang ingin diubah datanya.
+		$berita_judul = $this->db->escape($post['berita_judul']);
+		$berita_isi = $this->db->escape($post['berita_isi']);
+
+		$sql = $this->db->query("UPDATE tbl_berita SET berita_judul = $berita_judul, berita_isi = $berita_isi WHERE berita_id = ".intval($id));
+
+		return true;
 	}
 
 	public function delete_news($kode){

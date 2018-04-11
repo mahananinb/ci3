@@ -73,15 +73,17 @@ class open extends CI_Controller {
             redirect('open/index','refresh');
         }
 
-    public function edit_news($kode){
-		$this->load->model('m_berita');
-		$data['single'] = $this->m_berita->get_berita_by_kode($kode);
-		if($this->input->post('edit_news')){
-			$upload=$this->m_berita->upload();
-			$this->m_berita->update($upload,$kode);
-			redirect('open');
+	public function edit($id){
+		$this->load->model("m_berita");
+		$data['tipe'] = "Edit";
+		$data['default'] = $this->m_berita->get_single($id);
+
+		if(isset($_POST['simpan'])){
+			$this->m_berita->update($_POST, $id);
+			redirect("open");
 		}
-		
-		$this->load->view('V_edit',$data);
+
+		$this->load->view("V_edit",$data);
 	}
+
 }

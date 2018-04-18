@@ -36,7 +36,14 @@
 			<h2>Portal Berita</h2><hr/>
 			<div class="container">
 
-     			 <form method="post" class="form-horizontal" enctype="multipart/form-data">
+     			 <form method="post" class="form-horizontal" enctype="multipart/form-data">	<div class="form-group">
+				<label class="control-label col-sm-2">
+					Id Berita
+				</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" name="id" value="<?=isset($default['berita_id'])? $default['berita_id'] : ""?>" disabled>
+				</div>
+			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2">
 					Judul
@@ -54,12 +61,37 @@
 				</div>
 			</div>
 			<div class="form-group">
+				<label class="control-label col-sm-2">
+					Author
+				</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" name="author" value="<?=isset($default['berita_author'])? $default['berita_author'] : ""?>" required>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2">
+					Email Author
+				</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" name="emailAuthor" value="<?=isset($default['email_author'])? $default['email_author'] : ""?>" required>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2">
+					Sumber Berita
+				</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" name="sumberBerita" value="<?=isset($default['sumber_berita'])? $default['sumber_berita'] : ""?>" required>
+				</div>
+			</div>
+			<div class="form-group">
 		      <label class="control-label col-sm-2">Gambar :</label>
 		     
 		      <div class="col-sm-10">
 		        <span class="input-group-addon"><input type="file" required name="berita_image" class="file"></span>
 		      </div><br>
 		    </div>
+		    
 			<center>
 			<input class="btn btn-primary" type="submit" name="simpan" value="simpan">
 			</center>

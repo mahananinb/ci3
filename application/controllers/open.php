@@ -30,6 +30,12 @@ class open extends CI_Controller {
 	    $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
 	    $config['encrypt_name'] = TRUE; //nama yang terupload nantinya
 
+	    $this->load->helper('form');
+		$this->load->library('from_validation');
+	    $this->form_validation->set_rules('judul', 'Judul Berita', 'trim|required');
+	    $this->form_validation->set_rules('author', 'Nama Author', 'trim|required');
+	    $this->form_validation->set_rules('sumberBerita', 'Sumber Berita', 'trim|required');
+
 	    $this->upload->initialize($config);
 	    if(!empty($_FILES['filefoto']['name'])){
 	        if ($this->upload->do_upload('filefoto')){
@@ -47,10 +53,14 @@ class open extends CI_Controller {
 	            $this->image_lib->resize();
 
 	            $gambar=$gbr['file_name'];
+	            $id=$this->input->post('id');
                 $jdl=$this->input->post('judul');
                 $berita=$this->input->post('berita');
+                $author=$this->input->post('author');
+                $emailAuthor=$this->input->post('emailAuthor');
+                $sumberBerita=$this->input->post('sumberBerita');
 
-				$this->m_berita->simpan_berita($jdl,$berita,$gambar);
+				$this->m_berita->simpan_berita($jdl,$berita,$gambar,$author,$emailAuthor,$sumberBerita);
 				redirect('open/index');
 		}else{
 			redirect('open');

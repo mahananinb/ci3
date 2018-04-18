@@ -38,8 +38,10 @@
 	<div class="container">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 			<center><h2><?php echo $b['berita_judul'];?></h2><hr/>
-			<img src="<?php echo base_url().'assets/images/'.$b['berita_image'];?>"></center>
-			<?php echo $b['berita_isi'];?>
+			<img src="<?php echo base_url().'assets/images/'.$b['berita_image'];?>"></center><br/>
+			<br><b><?php echo $b['sumber_berita'];?><br/></b>
+			<?php echo $b['berita_isi'];?><br/>
+			<p align="right"><b><?php echo $b ['email_author']?></b></p>
 		</div>
 		
 	</div>

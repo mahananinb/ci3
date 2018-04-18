@@ -1,8 +1,11 @@
 <?php
 class M_berita extends CI_Model{
 
-	function simpan_berita($jdl,$berita,$gambar){
-		$hsl=$this->db->query("INSERT INTO tbl_berita (berita_judul,berita_isi,berita_image) VALUES ('$jdl','$berita','$gambar')");
+	function simpan_berita($jdl,$berita,$gambar,$berita_author,$email_author,$sumber_berita){
+		$hsl=$this->db->query("INSERT INTO tbl_berita 
+			(berita_judul,berita_isi,berita_image,berita_author,email_author,sumber_berita) 
+			VALUES 
+			('$jdl','$berita','$gambar','$berita_author','$email_author','$sumber_berita')");
 		return $hsl;
 	}
 
@@ -31,8 +34,13 @@ class M_berita extends CI_Model{
 		//parameter $id wajib digunakan agar program tahu ID mana yang ingin diubah datanya.
 		$berita_judul = $this->db->escape($post['berita_judul']);
 		$berita_isi = $this->db->escape($post['berita_isi']);
+		$berita_author = $this->db->escape($post['berita_author']);
+		$email_author = $this->db->escape($post['email_author']);
+		$sumber_berita = $this->db->escape($post['sumber_berita']);
 
-		$sql = $this->db->query("UPDATE tbl_berita SET berita_judul = $berita_judul, berita_isi = $berita_isi WHERE berita_id = ".intval($id));
+		$sql = $this->db->query("UPDATE tbl_berita SET 
+			berita_judul = $berita_judul, berita_isi = $berita_isi, berita_author = $berita_author, email_author = $email_author, sumber_berita = $sumber_berita
+			WHERE berita_id = ".intval($id));
 
 		return true;
 	}

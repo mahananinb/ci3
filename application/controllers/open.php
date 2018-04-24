@@ -96,4 +96,6 @@ class open extends CI_Controller {
 		$this->load->view("V_edit",$data);
 	}
 
+	
+
 }

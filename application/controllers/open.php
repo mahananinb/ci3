@@ -7,6 +7,7 @@ class open extends CI_Controller {
 		parent::__construct();
 		$this->load->model('m_berita');
 		$this->load->library('upload');
+		$this->load->model('m_katagori');
 	}
 	 
 	function index()
@@ -22,7 +23,8 @@ class open extends CI_Controller {
 	
 
 	function news(){
-		$this->load->view('V_form');
+		$data['category'] = $this->m_katagori->get_all_categories();
+		$this->load->view('V_form',$data);
 	}
 
 	function simpan_post(){
@@ -30,11 +32,14 @@ class open extends CI_Controller {
 	    $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
 	    $config['encrypt_name'] = TRUE; //nama yang terupload nantinya
 
-	    $this->load->helper('form');
-		$this->load->library('from_validation');
-	    $this->form_validation->set_rules('judul', 'Judul Berita', 'trim|required');
-	    $this->form_validation->set_rules('author', 'Nama Author', 'trim|required');
-	    $this->form_validation->set_rules('sumberBerita', 'Sumber Berita', 'trim|required');
+ 		$this->load->helper('form');
+		$this->load->library('form_validation');
+		$data['category'] = $this->m_katagori->get_all_categories();
+	     $this->form_validation->set_rules('berita_judul', 'Berita Judul', 'required|is_unique[blogs.post_title]',
+			array(
+				'required' 		=> 'Isi %s donk, males amat.',
+				'is_unique' 	=> 'Berita Judul <strong>' .$this->input->post('berita_judul'). '</strong> sudah ada bosque.'
+			));
 
 	    $this->upload->initialize($config);
 	    if(!empty($_FILES['filefoto']['name'])){
@@ -59,8 +64,9 @@ class open extends CI_Controller {
                 $author=$this->input->post('author');
                 $emailAuthor=$this->input->post('emailAuthor');
                 $sumberBerita=$this->input->post('sumberBerita');
+                $id_katagori=$this->input->post('id_katagori');
 
-				$this->m_berita->simpan_berita($jdl,$berita,$gambar,$author,$emailAuthor,$sumberBerita);
+				$this->m_berita->simpan_berita($jdl,$berita,$gambar,$author,$emailAuthor,$sumberBerita,$id_katagori);
 				redirect('open/index');
 		}else{
 			redirect('open');
@@ -85,6 +91,8 @@ class open extends CI_Controller {
 
 	public function edit($id){
 		$this->load->model("m_berita");
+		$this->load->model("m_katagori");
+		$data['category'] = $this->m_katagori->get_all_categories();
 		$data['tipe'] = "Edit";
 		$data['default'] = $this->m_berita->get_single($id);
 

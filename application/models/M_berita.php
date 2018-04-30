@@ -1,11 +1,11 @@
 <?php
 class M_berita extends CI_Model{
 
-	function simpan_berita($jdl,$berita,$gambar,$berita_author,$email_author,$sumber_berita){
+	function simpan_berita($jdl,$berita,$gambar,$berita_author,$email_author,$sumber_berita,$id_katagori){
 		$hsl=$this->db->query("INSERT INTO tbl_berita 
-			(berita_judul,berita_isi,berita_image,berita_author,email_author,sumber_berita) 
+			(berita_judul,berita_isi,berita_image,berita_author,email_author,sumber_berita,id_katagori) 
 			VALUES 
-			('$jdl','$berita','$gambar','$berita_author','$email_author','$sumber_berita')");
+			('$jdl','$berita','$gambar','$berita_author','$email_author','$sumber_berita','$id_katagori')");
 		return $hsl;
 	}
 
@@ -28,18 +28,25 @@ class M_berita extends CI_Model{
    			}
   		$Q->free_result();
  		return $data;
+
+ 		$this->db->select('*');
+  		$this->db->from('tbl_berita');
+  		$this->db->join('tbl_kategori', 'tbl_berita.berita_id = tbl_kategori.id_kategori');
+  		$this->db->where('tbl_kategori.berita_id='.$id);
+  		return $this->db->get()->result();
 	}
 
 	public function update($post, $id){
 		//parameter $id wajib digunakan agar program tahu ID mana yang ingin diubah datanya.
 		$berita_judul = $this->db->escape($post['berita_judul']);
 		$berita_isi = $this->db->escape($post['berita_isi']);
-		$berita_author = $this->db->escape($post['berita_author']);
-		$email_author = $this->db->escape($post['email_author']);
-		$sumber_berita = $this->db->escape($post['sumber_berita']);
+		$author = $this->db->escape($post['berita_author']);
+		$emailAuthor = $this->db->escape($post['email_author']);
+		$sumberBerita = $this->db->escape($post['sumber_berita']);
+		$id_katagori = $this->db->escape($post['id_katagori']);
 
 		$sql = $this->db->query("UPDATE tbl_berita SET 
-			berita_judul = $berita_judul, berita_isi = $berita_isi, berita_author = $berita_author, email_author = $email_author, sumber_berita = $sumber_berita
+			berita_judul = $berita_judul, berita_isi = $berita_isi, berita_author = $author, email_author = $emailAuthor, sumber_berita = $sumberBerita, id_katagori = $id_katagori
 			WHERE berita_id = ".intval($id));
 
 		return true;

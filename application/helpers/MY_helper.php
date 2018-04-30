@@ -19,6 +19,6 @@ if (!function_exists('time_ago')) {
 
         $difference = round($difference);
 
-        return "$difference $periods[$j] lalu ";
+        return "$difference $periods[$j] lalu";
     }
 }

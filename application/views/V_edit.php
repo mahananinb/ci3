@@ -27,6 +27,9 @@
 									<li> <a href="http://localhost/ci3/open/index">Home</a></li>
 									<li> <a href="http://localhost/ci3/open/About">About</a></li>
 									<li class="active"> <a href="http://localhost/ci3/open/news">Post</a></li>
+									
+									<li> <a href="http://localhost/ci3/katagori/index">Katagori</a></li>
+
 							</div><!-- /.navbar-collapse -->
 						</div>
 					</nav>
@@ -52,9 +55,27 @@
 					<input type="text" class="form-control" name="berita_judul" value="<?=isset($default['berita_judul'])? $default['berita_judul'] : ""?>" required>
 				</div>
 			</div>
+			<tr>
+			<div class="form-group">
+          		<label  class="control-label col-sm-2">
+          			Kategori
+          		</label>
+          		<div class="col-sm-10">
+            <select name="id_katagori" class="form-control" required>
+              <option value="">Pilih Kategori</option>
+              <?php foreach($category as $kat): ?>
+
+              <option value="<?php echo $kat->id_katagori; ?>"><?php echo $kat->nama_katagori; ?></option>
+              <?php endforeach; ?>
+
+            </select>
+            </div>
+        </tr>
+        </div>
+
 			<div class="form-group">
 				<label class="control-label col-sm-2">
-					Content					
+					Berita Isi					
 				</label>
 				<div class="col-sm-10">
 					<textarea name="berita_isi" class="form-control" required><?=isset($default['berita_isi'])? $default['berita_isi'] : ""?></textarea>

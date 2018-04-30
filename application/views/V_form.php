@@ -27,6 +27,9 @@
 									<li> <a href="http://localhost/ci3/open/index">Home</a></li>
 									<li> <a href="http://localhost/ci3/open/About">About</a></li>
 									<li class="active"> <a href="http://localhost/ci3/open/news">Post</a></li>
+									
+									<li> <a href="http://localhost/ci3/katagori/index">Katagori</a></li>
+
 							</div><!-- /.navbar-collapse -->
 						</div>
 					</nav>
@@ -37,7 +40,30 @@
 			<form action="<?php echo base_url().'open/simpan_post'?>" method="post" enctype="multipart/form-data">
 				<input type="text" name="id" class="form-control" placeholder="Id Berita" disabled/><br/>
 	            <input type="text" name="judul" class="form-control" placeholder="Judul berita"><br/>
-	            <textarea id="ckeditor" name="berita" class="form-control" required/></textarea><br/>
+	          <!--  <div class="form-group">
+                        <select class="form-control" name="provinsi" id="provinsi">
+                            <option value="">Katagori Berita</option>
+                            <?php
+                            foreach ($Katagori as $kat) {
+                                ?>
+                                <option <?php echo $katagori == $data->id_katagori ? 'selected="selected"' : '' ?> 
+                                    value="<?php echo $kat->id_katagori ?>"><?php echo $kat->nama_katagori ?></option>
+                                <?php
+                            }
+                            ?>
+                        </select>
+                    </div> -->
+
+                    <tr>
+          <label>Kategori</label>
+            <select name="id_katagori" class="form-control" required>
+              <option value="">Pilih Kategori</option>
+              <?php foreach($category as $kat): ?>
+              <option value="<?php echo $kat->id_katagori; ?>"><?php echo $kat->nama_katagori; ?></option>
+              <?php endforeach; ?>
+            </select>
+        </tr>
+	            <textarea id="ckeditor" name="berita" class="form-control" placeholder="Isi Berita" required/></textarea><br/>
 	             <input type="text" name="author" class="form-control" placeholder="Author" required/><br/>
 	              <input type="text" name="emailAuthor" class="form-control" placeholder="Email Author" required/><br/>
 	               <input type="text" name="sumberBerita" class="form-control" placeholder="Sumber berita" required/><br/>

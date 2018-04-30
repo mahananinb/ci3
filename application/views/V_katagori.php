@@ -6,7 +6,7 @@
 </head>
 <body>
 	<div class="container">
-	
+	 
 		<nav class="navbar navbar-default" role="navigation">
 						<div class="container-fluid">
 							<!-- Brand and toggle get grouped for better mobile display -->
@@ -28,49 +28,71 @@
 									<li> <a href="http://localhost/ci3/open/About">About</a></li>
 									<li > <a href="http://localhost/ci3/open/news">Post</a></li>
 									<li class="active"> <a href="http://localhost/ci3/katagori/index">Katagori</a></li>
+
 							</div><!-- /.navbar-collapse -->
 						</div>
 					</nav>
+					<div class="jumbotron">
+						<div class="container">
+							<center>
+							<h1>List Katagori</h1>
+							</center>
+						</div>
+					</div>
 				<p>
-					<?php echo anchor('kategori/create', 'Buat Kategori Baru', array('class' => 'btn btn-primary')); ?>
+					<?php echo anchor('katagori/create', 'Buat Kategori Baru', array('class' => 'btn btn-primary')); ?>
 				</p>
+			</div>
+
+		<?php if( !empty($categories) ) : ?>
 		<div class="album py-5 bg-light">
 			<div class="container">
 				<div class="row">
 
-					<?php
-						// Kita looping data dari controller
-						foreach ($catagories as $key) :
-					?>
-
-					<div class="col-md-4">
+					<div class="col-md-12">
 						<!-- Kita format tampilan blog dalam bentuk card -->
 						<!-- https://getbootstrap.com/docs/4.0/components/card/ -->
-						<div class="card mb-4 box-shadow border-0">
-														
+						<div class="card mb-4 box-shadow border-0">							
 							<div class="card-body">
-
-								<!-- Batasi cuplikan konten dengan substr sederhana -->
-								<h5><?php echo character_limiter($key->cat_name, 40) ?></h5>
-								<p class="card-text"><?php echo word_limiter($key->cat_description, 20) ?></p>
-								
-								<div class="d-flex justify-content-between align-items-center">
-									<div class="btn-group">
-										<!-- Untuk link detail -->
-										<a href="<?php echo base_url(). 'katagori/artikel/' . $key->id ?>" class="btn btn-outline-secondary">Baca</a>
-										<a href="<?php echo base_url(). 'katagori/edit/' . $key->id ?>" class="btn btn-outline-secondary">Edit</a>
-									</div>
-								</div>
+								<table class="table" >
+									<thead>
+										<tr>
+											<th>#</th>
+											<th>Nama</th>
+											<th>Description</th>
+											<th>Selengkapnya</th>
+										</tr>
+									</thead>
+									<tbody>
+										<!-- ISI DATA AKAN MUNCUL DISINI -->
+										<?php
+											// Kita looping data dari controller
+											foreach ($categories as $key) :
+										?>
+										<tr>
+											<td><?php echo $key->id_katagori ?></td>
+											<td><?php echo character_limiter($key->nama_katagori, 40) ?></td>
+											<td><?php echo word_limiter($key->desk_katagori, 20) ?></td>
+											<td>
+												<a href="<?php echo base_url('katagori/'.$key->id_katagori) ?>" class="btn btn-primary">Lihat Artikel</a>
+												<a href="<?php echo base_url(). 'katagori/edit/' . $key->id_katagori ?>" class="btn btn-primary">edit</a>
+												<a href="<?php echo base_url(). 'katagori/delete/' . $key->id_katagori ?>" class="btn btn-primary btn-danger">Delete</a>
+											</td>
+										</tr>
+										<?php endforeach; ?>
+									</tbody>
+								</table>
 							</div>
-							
 						</div>
 					</div>
-					<?php endforeach; ?>
 
 				</div>
 			</div>
 		</div>
-
+		<?php else : ?>
+		<p><center>Belum ada data</p>
+		<?php endif; ?>
+		
 
 		<script src="//code.jquery.com/jquery.js"></script>
 		<!-- Bootstrap JavaScript -->

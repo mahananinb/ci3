@@ -1,6 +1,10 @@
 <?php
 class M_berita extends CI_Model{
 
+
+
+	
+
 	function simpan_berita($jdl,$berita,$gambar,$berita_author,$email_author,$sumber_berita,$id_katagori){
 		$hsl=$this->db->query("INSERT INTO tbl_berita 
 			(berita_judul,berita_isi,berita_image,berita_author,email_author,sumber_berita,id_katagori) 
@@ -19,6 +23,23 @@ class M_berita extends CI_Model{
 		return $hsl;
 	}
 
+	public function get_all_tabel_artikel( $limit = FALSE, $offset = FALSE )
+ 	{
+ 	// Jika variable $limit ada pada parameter maka kita limit query-nya
+ 		if ( $limit ) {
+ 			$this->db->limit($limit, $offset);
+ 		}
+ 			
+
+	 	$query = $this->db->get('tbl_berita');	
+ 		// Return dalam bentuk object
+ 		return $query->result();
+ 	}
+		public function get_total()
+ 	{
+ 		// Dapatkan jumlah total artikel
+ 		return $this->db->count_all("tbl_berita");
+ 	}
 	function get_single($id){
 		$data = array();
   		$options = array('berita_id' => $id);

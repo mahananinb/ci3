@@ -29,6 +29,7 @@
 									<li class="active"> <a href="http://localhost/ci3/open/news">Post</a></li>
 									
 									<li> <a href="http://localhost/ci3/katagori/index">Katagori</a></li>
+									<li> <a href="http://localhost/ci3/dataTable/index">Data</a></li>
 
 							</div><!-- /.navbar-collapse -->
 						</div>

@@ -21,30 +21,34 @@
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 					<nav class="navbar navbar-default" role="navigation">
-						<div class="container-fluid">
-							<!-- Brand and toggle get grouped for better mobile display -->
-							<div class="navbar-header">
-								<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-									<span class="sr-only">Toggle navigation</span>
-									<span class="icon-bar"></span>
-									<span class="icon-bar"></span>
-									<span class="icon-bar"></span>
-									<span class="icon-bar"></span>
-								</button>
-								<a class="navbar-brand" href="#">WEB Mahanani</a>
-							</div>
-					
-							<!-- Collect the nav links, forms, and other content for toggling -->
-							<div class="collapse navbar-collapse navbar-ex1-collapse">
-								<ul class="nav navbar-nav pull-right">
-									<li class="active"> <a href="http://localhost/ci3/open/lists">Home</a></li>
-									<li> <a href="http://localhost/ci3/open/About">About</a></li>
-									<li> <a href="http://localhost/ci3/open/news">Post</a></li>
-									<li> <a href="http://localhost/ci3/katagori/index">Katagori</a></li>
+					<div class="container-fluid">
+						<!-- Brand and toggle get grouped for better mobile display -->
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
 
-							</div><!-- /.navbar-collapse -->
+							</button>
+							<a class="navbar-brand" href="#">WEB Mahanani</a>
 						</div>
-					</nav>
+				
+						<!-- Collect the nav links, forms, and other content for toggling -->
+						<div class="collapse navbar-collapse navbar-ex1-collapse">
+							<ul class="nav navbar-nav pull-right">
+								<li> <a href="http://localhost/ci3/open/index">Home</a></li>
+									<li class="active"> <a href="http://localhost/ci3/open/About">About</a></li>
+									<li> <a href="http://localhost/ci3/open/news">Post</a></li>
+									
+									<li> <a href="http://localhost/ci3/katagori/index">Katagori</a></li>
+									
+									<li> <a href="http://localhost/ci3/dataTable/index">Data</a></li>
+
+							</ul>
+						</div><!-- /.navbar-collapse -->
+					</div>
+				</nav>
 					<div class="jumbotron">
 						<div class="container">
 							<center>
@@ -57,27 +61,51 @@
 
 			</div>
 			<?php
-			function limit_words($string, $word_limit){
-                $words = explode(" ",$string);
-                return implode(" ",array_splice($words,0,$word_limit));
-            }
-			foreach ($data->result_array() as $i) :
-				$id=$i['berita_id'];
-				$judul=$i['berita_judul'];
-				$image=$i['berita_image'];
-				$isi=$i['berita_isi'];
-		?>
+			// function limit_words($string, $word_limit){
+   //              $words = explode(" ",$string);
+   //              return implode(" ",array_splice($words,0,$word_limit));
+   //          }
+			foreach ($artikel as $i) : ?>
+		
 		
 		<div class="col-md-8 col-md-offset-2">
-			<h2><?php echo $judul;?></h2><hr/>
-			<img src="<?php echo base_url().'assets/images/'.$image;?>">
-			<?php echo limit_words($isi,30);?><a href="<?php echo base_url().'open/view/'.$id;?>"> Selengkapnya ></a>
-			<a href="<?php echo site_url('open/delete_news/'.$i['berita_id']) ?>" class="btn btn-danger">Delete</a>
-            <a href="<?php echo site_url('open/edit/'.$i['berita_id'])?>" class="btn btn-primary" class="btn btn-success">Edit</a> &nbsp;
+			<h2><?php echo $i->berita_judul ?></h2><hr/>
+			<img src="assets/images/<?php echo $i->berita_image ?>;?>">
+			<!--// <?php// echo limit_words($isi,30);?><a href="<?php //echo base_url().//'open/view/'.$id;?>"> Selengkapnya ></a> -->
+			<a href="<?php echo site_url('open/delete_news/'.$i->berita_id) ?>" class="btn btn-danger">Delete</a>
+            <a href="<?php echo site_url('open/edit/'.$i->berita_id)?>" class="btn btn-primary" class="btn btn-success">Edit</a> &nbsp;
 		</div>
 		<?php endforeach;?>
 	</div>
 		</div>
+		<center>
+		<div>
+		<?php if(isset($links)){
+			echo $links;
+		}
+		?>
+		</div>
+		</center>
+
+		<link rel="stylesheet" href="<?php echo base_url()?>assets/css/bootstrap.min.css" type="text/css">
+        <!-- Style tambahan
+        Note: Jika menginginkan style CSS tambahan, gunakan file custom.css sehingga file CSS asli milik Bootstrap tetap orisinil. Tujuannya, agar nantinya jika ada update baru dari Bootstrap dan ingin kita implementasikan, maka custom style kita tidak tertimpa.
+        -->
+        <!-- <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/theme.min.css"> -->
+        <link rel="stylesheet" href="<?php echo base_url() ?>assets/assets/css/custom.css">
+
+        <script src="<?php echo base_url() ?>assets/assets/js/jquery-1.9.1.min.js"></script>
+
+        <!-- Bootstrap core & jQuery JavaScript
+		================================================== -->
+		<script src="<?php echo base_url() ?>assets/assets/js/bootstrap.min.js"></script>
+
+		<!-- Plugins -->
+		<script src="<?php echo base_url() ?>assets/assets/js/holder.min.js"></script>
+
+		<!-- Custom -->
+		<script src="<?php echo base_url() ?>assets/assets/js/custom.js"></script>
+
 		<!-- jQuery -->
 		<script src="//code.jquery.com/jquery.js"></script>
 		<!-- Bootstrap JavaScript -->

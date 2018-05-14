@@ -12,8 +12,31 @@ class open extends CI_Controller {
 	 
 	function index()
 	{
-		$x['data']=$this->m_berita->get_all_berita();
-		$this->load->view('Home',$x);
+
+		$limit_per_page = 1;
+
+		// URI segment untuk mendeteksi "halaman ke berapa" dari URL
+		$start_index = ( $this->uri->segment(3) ) ? $this->uri->segment(3) : 0;
+
+		// Dapatkan jumlah data 
+		$total_records = $this->m_berita->get_total();
+		
+		if ($total_records > 0) {
+			// Dapatkan data pada halaman yg dituju
+			$data["artikel"] = $this->m_berita->get_all_tabel_artikel($limit_per_page, $start_index);
+			
+			// Konfigurasi pagination
+			$config['base_url'] = base_url() . 'blog/index';
+			$config['total_rows'] = $total_records;
+			$config['per_page'] = $limit_per_page;
+			$config['uri_segment'] = 3;
+			
+			$this->pagination->initialize($config);
+				
+			// Buat link pagination
+			$data['links'] = $this->pagination->create_links();
+		}
+		$this->load->view('Home',$data);
 	}
 	
 	function about()

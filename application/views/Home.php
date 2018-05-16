@@ -37,8 +37,8 @@
 						<!-- Collect the nav links, forms, and other content for toggling -->
 						<div class="collapse navbar-collapse navbar-ex1-collapse">
 							<ul class="nav navbar-nav pull-right">
-								<li> <a href="http://localhost/ci3/open/index">Home</a></li>
-									<li class="active"> <a href="http://localhost/ci3/open/About">About</a></li>
+								<li class="active"> <a href="http://localhost/ci3/open/index">Home</a></li>
+									<li > <a href="http://localhost/ci3/open/About">About</a></li>
 									<li> <a href="http://localhost/ci3/open/news">Post</a></li>
 									
 									<li> <a href="http://localhost/ci3/katagori/index">Katagori</a></li>
@@ -61,17 +61,17 @@
 
 			</div>
 			<?php
-			// function limit_words($string, $word_limit){
-   //              $words = explode(" ",$string);
-   //              return implode(" ",array_splice($words,0,$word_limit));
-   //          }
+			function limit_words($string, $word_limit){
+                $words = explode(" ",$string);
+                return implode(" ",array_splice($words,0,$word_limit));
+            }
 			foreach ($artikel as $i) : ?>
 		
 		
 		<div class="col-md-8 col-md-offset-2">
 			<h2><?php echo $i->berita_judul ?></h2><hr/>
 			<img src="assets/images/<?php echo $i->berita_image ?>;?>">
-			<!--// <?php// echo limit_words($isi,30);?><a href="<?php //echo base_url().//'open/view/'.$id;?>"> Selengkapnya ></a> -->
+			<?php echo limit_words($i->berita_isi,30);?><a href="<?php echo base_url().'open/view/'.$i->berita_id;?>"> Selengkapnya ></a>
 			<a href="<?php echo site_url('open/delete_news/'.$i->berita_id) ?>" class="btn btn-danger">Delete</a>
             <a href="<?php echo site_url('open/edit/'.$i->berita_id)?>" class="btn btn-primary" class="btn btn-success">Edit</a> &nbsp;
 		</div>

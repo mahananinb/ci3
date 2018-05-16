@@ -2,9 +2,6 @@
 class M_berita extends CI_Model{
 
 
-
-	
-
 	function simpan_berita($jdl,$berita,$gambar,$berita_author,$email_author,$sumber_berita,$id_katagori){
 		$hsl=$this->db->query("INSERT INTO tbl_berita 
 			(berita_judul,berita_isi,berita_image,berita_author,email_author,sumber_berita,id_katagori) 

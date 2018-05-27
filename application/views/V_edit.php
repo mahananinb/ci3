@@ -1,40 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Post Berita</title>
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/css/bootstrap.css'?>">
-</head>
-<body>
-	<div class="container">
-	
-		<nav class="navbar navbar-default" role="navigation">
-						<div class="container-fluid">
-							<!-- Brand and toggle get grouped for better mobile display -->
-							<div class="navbar-header">
-								<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-									<span class="sr-only">Toggle navigation</span>
-									<span class="icon-bar"></span>
-									<span class="icon-bar"></span>
-									<span class="icon-bar"></span>
-									<span class="icon-bar"></span>
-								</button>
-								<a class="navbar-brand" href="#">WEB Mahanani</a>
-							</div>
-					
-							<!-- Collect the nav links, forms, and other content for toggling -->
-							<div class="collapse navbar-collapse navbar-ex1-collapse">
-								<ul class="nav navbar-nav pull-right">
-									<li> <a href="http://localhost/ci3/open/index">Home</a></li>
-									<li> <a href="http://localhost/ci3/open/About">About</a></li>
-									<li class="active"> <a href="http://localhost/ci3/open/news">Post</a></li>
-									
-									<li> <a href="http://localhost/ci3/katagori/index">Katagori</a></li>
-									<li> <a href="http://localhost/ci3/dataTable/index">Data</a></li>
-
-							</div><!-- /.navbar-collapse -->
-						</div>
-					</nav>
-
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); 
+$this->load->view('templates/header');?>
 	<!-- halaman tambah -->
 		<div class="col-md-8">
 			<h2>Portal Berita</h2><hr/>

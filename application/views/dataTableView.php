@@ -1,48 +1,6 @@
- <!DOCTYPE html>
-<html lang="">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Mahanani Nur B</title>
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); 
+$this->load->view('templates/header');?>
 
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="<?php echo base_url()?>assets/css/bootstrap.min.css" type="text/css">
-         <script src="<?php echo base_url() ?>assets/js/jquery-1.9.1.min.js"></script>
-
-
-    </head>
-    <body>
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <nav class="navbar navbar-default" role="navigation">
-                        <div class="container-fluid">
-                            <!-- Brand and toggle get grouped for better mobile display -->
-                            <div class="navbar-header">
-                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                                    <span class="sr-only">Toggle navigation</span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                </button>
-                                <a class="navbar-brand" href="#">WEB Mahanani</a>
-                            </div>
-                    
-                            <!-- Collect the nav links, forms, and other content for toggling -->
-                            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                                <ul class="nav navbar-nav pull-right">
-                                    <li> <a href="http://localhost/ci3/open/lists">Home</a></li>
-                                    <li> <a href="http://localhost/ci3/open/About">About</a></li>
-                                    <li> <a href="http://localhost/ci3/open/news">Post</a></li>
-                                    <li> <a href="http://localhost/ci3/katagori/index">Katagori</a></li>
-                                    
-                                    <li class="active"> <a href="http://localhost/ci3/dataTable/index">Data</a></li>
-
-                            </div><!-- /.navbar-collapse -->
-                        </div>
-                    </nav>
  <section class="py-5 bg-light">
         <div class="container">
             <div class="row">

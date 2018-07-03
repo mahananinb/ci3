@@ -34,7 +34,7 @@ class User extends CI_Controller{
 			// Set message
 			$this->session->set_flashdata('user_registered', 'Anda telah teregistrasi.');
 
-			redirect('blog');
+			redirect('User/login');
 		}
 	}
 
@@ -56,15 +56,15 @@ class User extends CI_Controller{
 	$password = md5($this->input->post('password'));
 
 	// Login user
-	$user_id = $this->user_model->login($username, $password);
+	$id_user = $this->user_model->login($username, $password);
 
-	if($user_id){
+	if($id_user){
 		// Buat session
 		$user_data = array(
-			'user_id' => $user_id,
+			'id_User' => $id_user,
 			'username' => $username,
 			'logged_in' => true,
-			'level' => $this->user_model->get_user_level($user_id),
+			'level' => $this->user_model->get_user_level($id_user),
 		);
 
 		$this->session->set_userdata($user_data);
@@ -86,7 +86,7 @@ class User extends CI_Controller{
 	public function logout(){
 		// Unset user data
 		$this->session->unset_userdata('logged_in');
-		$this->session->unset_userdata('user_id');
+		$this->session->unset_userdata('id_User');
 		$this->session->unset_userdata('username');
 
 		// Set message
@@ -94,6 +94,11 @@ class User extends CI_Controller{
 
 		redirect('user/login');
 	}
+//untuk memanggil sesion level 
+	public function get_userdata(){
+        $userData = $this->session->userdata();
+        return $userData;
+    }
 
 	function dashboard()
 	{
@@ -101,15 +106,22 @@ class User extends CI_Controller{
 		if(!$this->session->userdata('logged_in')) 
 			redirect('user/login');
 
-		$user_id = $this->session->userdata('user_id');
+		$id_user = $this->session->userdata('id_User');
 
 		// Dapatkan detail dari User
-		$data['user'] = $this->user_model->get_user_details( $user_id );
+		$data['user'] = $this->user_model->get_user_details( $id_user );
 
-		// Load view
-		$this->load->view('templates/header', $data, FALSE);
-		$this->load->view('users/dashboard', $data, FALSE);
-		$this->load->view('templates/footer', $data, FALSE);
+		$userData = $this->get_userdata();
+        if ($userData['fk_level_id'] === '1'){
+            $this->load->view('templates/header');
+            $this->load->view('userWow', $data);
+        } else if ($userData['fk_level_id'] === '2'){
+            $this->load->view('templates/header');
+            $this->load->view('userBiasa', $data);
+        } else if ($userData['fk_level_id'] === '3') {
+            $this->load->view('templates/header');
+            $this->load->view('v_dashboard', $data);
+        }
 	}
 	
 }

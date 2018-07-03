@@ -39,24 +39,29 @@
 							<ul class="nav navbar-nav pull-right">
 								<li class="active"> <a href="http://localhost/ci3/open/index">Home</a></li>
 									<li > <a href="http://localhost/ci3/open/About">About</a></li>
-									<li> <a href="http://localhost/ci3/open/news">Post</a></li>
-									
-									<li> <a href="http://localhost/ci3/katagori/index">Katagori</a></li>
-									
-									<li> <a href="http://localhost/ci3/dataTable/index">Data</a></li>
+									<!-- <li> <a href="http://localhost/ci3/open/news">Post</a></li>
+									<li> <a href="http://localhost/ci3/katagori/index">Katagori</a></li>								
+									<li> <a href="http://localhost/ci3/dataTable/index">Data</a></li> -->
 
 							<?php if(!$this->session->userdata('logged_in')) : ?>
-
-                    <div class="btn-group" role="group" aria-label="Data baru">
+									<li > <a href="<?php echo base_url('user/register') ?>">Register</a></li>
+									<li > <a href="<?php echo base_url('user/login') ?>">Login</a></li>
+                    <!-- <div class="btn-group" role="group" aria-label="Data baru">
 
                         <?php echo anchor('user/register', 'Register', array('class' => 'btn btn-outline-light')); ?>
                         <?php echo anchor('user/login', 'Login', array('class' => 'btn btn-outline-light')); ?>
 
-                    </div>
+                    </div> -->
 
-                	<?php endif; ?>
+                			<?php endif; ?>
+
+                	<?php if($this->session->userdata('logged_in')) : ?>
+        			<!-- <div class="btn-group" role="group" aria-label="Data baru"> -->
+          				<?php echo anchor('Open/simpan_post', 'Artikel Baru', array('class' => 'btn btn-outline-light')); ?>
+          				<?php echo anchor('katagori/create', 'Kategori Baru', array('class' => 'btn btn-outline-light')); ?>
+         				<?php echo anchor('User/logout', 'Logout', array('class' => 'btn btn-outline-light')); ?>
+       					<!-- </div> -->
+      <?php endif; ?>
 							</ul>
-
-							 
 						</div>
 				</nav>
